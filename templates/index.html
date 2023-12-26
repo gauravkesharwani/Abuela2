@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOMOS</title>
+  <!-- added google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Source+Sans+3:wght@400;600&display=swap"
+    rel="stylesheet">
+
+  <style>
+    .peerConnectionState-new {
+      color: cornflowerblue;
+    }
+
+    .peerConnectionState-connecting {
+      background: orange;
+      color: orange;
+    }
+
+    .peerConnectionState-connected {
+      background: green;
+      color: green;
+    }
+
+    .peerConnectionState-disconnected,
+    .peerConnectionState-closed,
+    .peerConnectionState-failed {
+      background: red;
+      color: red;
+    }
+
+    .iceConnectionState-new {
+      background: cornflowerblue;
+      color: cornflowerblue;
+    }
+
+    .iceConnectionState-connecting {
+      background: yellow;
+      color: yellow;
+    }
+
+    .iceConnectionState-checking {
+      background: orange;
+      color: orange;
+    }
+
+    .iceConnectionState-connected,
+    .iceConnectionState-completed {
+      background: green;
+      color: green;
+    }
+
+    .peerConnectionState-disconnected,
+    .peerConnectionState-closed,
+    .peerConnectionState-failed {
+      background: red;
+      color: red;
+    }
+
+    .iceGatheringState-new {
+      color: cornflowerblue;
+    }
+
+    .iceGatheringState-gathering {
+      color: orange;
+    }
+
+    .iceGatheringState-complete {
+      color: black;
+    }
+
+    .signalingState-stable {
+      color: green;
+    }
+
+    .signalingState-have-local-offer,
+    .signalingState-have-remote-offer,
+    .signalingState-have-local-pranswer,
+    .signalingState-have-remote-pranswer {
+      color: cornflowerblue;
+    }
+
+    .signalingState-closed {
+      color: red;
+    }
+
+    .streamingState-streaming {
+      color: green;
+    }
+
+    .streamingState-empty {
+      color: grey;
+    }
+
+    /* added css from here */
+
+    /* #content {
+      width: 820px;
+      position: relative;
+      margin: 0 auto;
+    }
+
+    #buttons {
+      clear: both;
+      padding: 0 0 0 0;
+      text-align: center;
+    } */
+
+    button {
+      /* padding: 10px 20px; */
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+      /* margin: 0 5px; */
+      /* background-color: #7459fe; */
+      /* color: #fff; */
+    }
+
+    button:hover {
+      background-color: #9480ff;
+      cursor: pointer;
+      transition: all 0.2s ease-out;
+    }
+
+    /* #status {
+      clear: both;
+      padding: 20px 0 0 0;
+      text-align: left;
+      display: inline-block;
+      zoom: 1;
+      line-height: 140%;
+      font-size: 15px;
+    }
+
+    #status div {
+      padding-bottom: 10px;
+    }
+
+    #video-wrapper {
+      background: url(../static/assets/bg.png);
+      height: 500px;
+      background-position: top;
+    }
+
+    #video-wrapper div {
+      width: 400px;
+      margin: 0 auto;
+      padding: 50px 0 0 0;
+    } */
+
+    video {
+      width: 320px;
+      height: 320px;
+      display: block;
+      border-radius: 50%;
+      background-color: #F61E7F;
+      margin: auto;
+
+
+      @media (min-width: 1024px) {
+        width: 400px;
+        height: 400px;
+      }
+    }
+  </style>
+
+  <link rel="stylesheet" href="../static/styles/style.css">
+
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.23/bundled/lenis.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <nav>
+    <div class="NavContainer constraint">
+      <ul class="Navlist">
+        <li><a href="https://eatsomos.com/collections">shop all</a></li>
+        <li><a href="https://eatsomos.com/pages/our-story">our story</a></li>
+        <li><a href="https://eatsomos.com/blogs/recipes-v2">recipes</a></li>
+        <li><a href="https://eatsomos.com/pages/store-locator">find us</a></li>
+      </ul>
+
+      <a href="https://eatsomos.com" class="Logo">
+        <img src="../static/assets/somos-logo.png" alt="">
+      </a>
+
+      <div class="NavActions">
+        <a href="https://eatsomos.com/a/account/login" class="Mexicap">
+          <svg width="35" height="25" viewBox="0 0 35 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M30.2589 19.8067C25.4389 23.6757 8.58738 23.6757 3.76738 19.8067C2.28075 18.6156 0.332443 12.5213 2.07761 13.2693C8.28267 15.9193 25.6051 16.1225 31.9487 13.2693C33.6754 12.4844 31.7455 18.6156 30.2589 19.8067Z"
+              stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+              d="M10.3509 14.192C10.3509 14.192 10.2863 7.28511 11.9207 4.15488C12.6594 2.74213 14.2937 1.38477 16.9992 1.38477C19.4277 1.38477 21.3483 2.74213 22.087 4.15488C23.7121 7.28511 23.6567 14.192 23.6567 14.192"
+              stroke="white" stroke-width="2" stroke-miterlimit="10" />
+            <path
+              d="M23.6567 11.3114L21.256 8.81836L19.1414 11.3114L17.11 8.81836L14.857 11.3114L12.7332 8.81836L10.4248 11.3114"
+              stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+
+        <a href="/" class="Search">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
+              stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M21 21.0002L16.7 16.7002" stroke="white" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </a>
+
+        <a href="https://eatsomos.com/cart" class="Cart">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M8 22C8.55228 22 9 21.5523 9 21C9 20.4477 8.55228 20 8 20C7.44772 20 7 20.4477 7 21C7 21.5523 7.44772 22 8 22Z"
+              stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+              d="M19 22C19.5523 22 20 21.5523 20 21C20 20.4477 19.5523 20 19 20C18.4477 20 18 20.4477 18 21C18 21.5523 18.4477 22 19 22Z"
+              stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+              d="M2.05005 2.0498H4.05005L6.71005 14.4698C6.80763 14.9247 7.06072 15.3313 7.42576 15.6197C7.7908 15.908 8.24495 16.0602 8.71005 16.0498H18.49C18.9452 16.0491 19.3865 15.8931 19.7411 15.6076C20.0956 15.3222 20.3422 14.9243 20.4401 14.4798L22.09 7.0498H5.12005"
+              stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+
+        <a href="https://eatsomos.com/collections" target="blank" class="Burger">
+          <svg width="35" height="25" viewBox="0 0 35 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M30.2589 19.8067C25.4389 23.6757 8.58738 23.6757 3.76738 19.8067C2.28075 18.6156 0.332443 12.5213 2.07761 13.2693C8.28267 15.9193 25.6051 16.1225 31.9487 13.2693C33.6754 12.4844 31.7455 18.6156 30.2589 19.8067Z"
+              stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+              d="M10.3509 14.192C10.3509 14.192 10.2863 7.28511 11.9207 4.15488C12.6594 2.74213 14.2937 1.38477 16.9992 1.38477C19.4277 1.38477 21.3483 2.74213 22.087 4.15488C23.7121 7.28511 23.6567 14.192 23.6567 14.192"
+              stroke="white" stroke-width="2" stroke-miterlimit="10" />
+            <path
+              d="M23.6567 11.3114L21.256 8.81836L19.1414 11.3114L17.11 8.81836L14.857 11.3114L12.7332 8.81836L10.4248 11.3114"
+              stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="overflow-hidden">
+    <img src="../static/assets/svg/pattern-1.svg" alt="" class="PatternOne">
+
+    <div class="Container constraint">
+      <div class="Texts">
+        <h1>
+          ABUELA VERONICA’S MEXICAN KITCHEN
+        </h1>
+
+        <p>
+          Let’s celebrate tradition, flavor, and culinary innovation together! Explore our interactive platform now and
+          begin your
+          delicious adventure with Abuela Veronica. ¡Vamos!
+        </p>
+      </div>
+
+      <div class="HeaderSocial">
+        <a href="https://www.youtube.com/@eatsomos" target="blank">
+          <img src="../static/assets/youtube.png" alt="">
+        </a>
+
+        <a href="https://api.whatsapp.com/send/?phone=15123801351" target="blank">
+          <img src="../static/assets/svg/whatsapp.svg" alt="">
+        </a>
+      </div>
+    </div>
+
+    <img src="../static/assets/svg/pattern-2.svg" alt="" class="PatternOne">
+  </header>
+
+  <section class="AiChat overflow-hidden">
+    <div class="Container">
+      <div class="content" id="content">
+        <div id="video-wrapper">
+          <div>
+            <video id="talk-video" width="400" height="400" poster="../static/assets/veronica.webp" src="../static/assets/veronica.mp4" autoplay muted loop></video>
+            <!-- <video id="talk-video" width="400" height="400" poster="../static/assets/loader.gif" autoplay muted></video> -->
+          </div>
+        </div>
+
+        <div id="buttons">
+          <button id="connect-button" type="button" hidden>Connect</button>
+          <button id="talk-button" type="button" hidden>Start</button>
+          <button id="destroy-button" type="button" hidden>Destroy</button>
+        </div>
+
+        <div id="status">
+          <label id="ice-gathering-status-label"></label>
+          <div class="ConnectionStats" >
+            <div id="circle" hidden></div>
+            <label id="ice-status-label" hidden></label>
+          </div>
+          <label id="peer-status-label" hidden></label>
+          <label id="signaling-status-label" hidden ></label>
+          <label id="streaming-status-label" hidden></label>
+
+          <p class="TagLine">
+            Unlocking Abuela's Secrets: <br>
+            Real Mexican Taste, Brought to Life by AI
+          </p>
+        </div>
+      </div>
+
+      <div class="msger overflow-hidden">
+        <div class="Top">
+          <div class="Left">
+            <img src="../static/assets/veronica.webp" alt="" class="Avatar">
+
+            <span>
+              abuela
+            </span>
+          </div>
+
+          <div class="Right">
+            <span>
+              need help?
+            </span>
+
+            <button class="Explore">
+              explore questions
+            </button>
+          </div>
+        </div>
+
+        <img class="PatternFour" src="../static/assets/svg/pattern-4.svg" alt="">
+
+        <div class="ChatBox" data-lenis-prevent>
+          <main class="msger-chat">
+            <div class="msg left-msg">
+              <div class="msg-bubble">
+                <div class="msg-text" style="text-align: left;">
+                  Hello, friend! How may I be of service?
+                </div>
+              </div>
+
+              <div class="msg-info-time"><span id='date-time'></span></div>
+            </div>
+          </main>
+        </div>
+
+        <form class="msger-inputarea">
+          <div class="Input">
+            <input type="text" class="msger-input" id="textInput" placeholder="Ask me anything..." disabled>
+
+            <button type="submit" class="msger-send-btn">
+              <svg width="30" height="15" viewBox="0 0 30 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_193_1541)">
+                  <path
+                    d="M29.7567 8.14473L21.3189 14.7362C20.7908 15.3013 19.8894 14.8976 19.8931 14.1025L21.7829 9.38391L1.94631 11.4263C0.88263 11.4627 0 10.5504 0 9.40812V5.59776C0 4.41914 0.942981 3.49076 2.04061 3.58764L21.715 5.45649L19.8969 0.89536C19.8969 0.0961523 20.7984 -0.299416 21.3265 0.26568L29.7567 6.88134C30.0811 7.22847 30.0811 7.7976 29.7567 8.14473Z"
+                    fill="black" fill-opacity="0.7" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_193_1541">
+                    <rect width="30" height="15" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="Ask overflow-hidden">
+    <img src="../static/assets/svg/pattern-3.svg" alt="" class="PatternThree">
+
+    <div class="Container constraint">
+      <h2>
+        ASK ABUELA
+        <span>
+          <img src="../static/assets/svg/love.svg" alt="">
+        </span>
+      </h2>
+
+      <div class="Questions"></div>
+
+      <button class="More">
+        See More
+      </button>
+
+      <button class="BackToTop">
+        <img src="../static/assets/svg/arrow-up.svg" alt="">
+      </button>
+    </div>
+  </section>
+
+  <div class="LimitModal">
+    <div class="Popup">
+      <img src="../static/assets/svg/modal-bg-1.svg" alt="">
+
+      <div class="Content">
+        <button class="CloseModal" id="closeLimitModal">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M6 6L18 18" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <p>
+          Such a delight speaking with you, my friend! I had to dash to rescue those chilaquiles before they became 'extra
+          crispy,' but just drop your thoughts in the chat box, and we can keep chatting. Or connect with me on WhatsApp at
+          <a href="https://wa.me/512.380-1351">512.380-1351.</a>
+          <br><br>
+          [Close this window and continue to chat]
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- <iframe width="1280" height="720" src="https://www.youtube.com/embed/kq0a-njDq7g"
+    title="Arsenal vs Brentford 1-0 - All Goals &amp; Highlights - 2023" frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen></iframe> -->
+  
+  <footer>
+    <div class="constraint">
+      <p>
+        For any questions or concerns, please email: <a href="mailto: hola@abuela.ai">hola@abuela.ai</a>
+      </p>
+
+      <a href="/privacy">Privacy-policy</a>
+    </div>
+  </footer>
+
+  <!-- <div class="Modal">
+    <div class="Popup">
+      
+    </div>
+  </div> -->
+
+  <script type="module" src="../static/scripts/index.js"></script>
+  <script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
+  <!-- <script async type="text/javascript" src="https:/..klaviyo.com/onsite/js/klaviyo.js?company_id=TkmKbg"></script>
+  <script>
+    setTimeout(() => {
+      window._klOnsite = window._klOnsite || []; window._klOnsite.push(['openForm', 'QWn6kK']);
+    }, 10000)
+  </script> -->
+</body>
+
+</html>
