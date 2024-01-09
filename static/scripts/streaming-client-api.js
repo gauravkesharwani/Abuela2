@@ -172,20 +172,20 @@ function botResponse(rawText) {
     else {
 
 
-      if (!talkAlertLimit && !mobileCheck) {
-        //alert(mobileCheck)
+      // if (!talkAlertLimit && !mobileCheck) {
+      //   //alert(mobileCheck)
 
-        closeButton.addEventListener('click', () => {
-          limitModal.style.opacity = 0
-          setTimeout(() => limitModal.style.display = 'none', 500)
-        })
+      //   closeButton.addEventListener('click', () => {
+      //     limitModal.style.opacity = 0
+      //     setTimeout(() => limitModal.style.display = 'none', 500)
+      //   })
 
-        limitModal.style.display = 'flex'
-        setTimeout(() => limitModal.style.opacity = 1, 0)
+      //   limitModal.style.display = 'flex'
+      //   setTimeout(() => limitModal.style.opacity = 1, 0)
 
-        // console.log(body)
-        // alert('You have reached limit of talking');
-      }
+      //   // console.log(body)
+      //   // alert('You have reached limit of talking');
+      // }
 
       appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
       talkAlertLimit = true
